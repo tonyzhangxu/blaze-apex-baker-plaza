@@ -1,0 +1,144 @@
+@import "tailwindcss";
+@import "@fontsource-variable/newsreader";
+@import "@fontsource/outfit/400.css";
+@import "@fontsource/outfit/500.css";
+@import "@fontsource/outfit/600.css";
+
+@theme {
+  --color-background: #09090b;
+  --color-foreground: #f4f4f0;
+  --color-card: #121214;
+  --color-card-foreground: #f4f4f0;
+  --color-popover: #121214;
+  --color-popover-foreground: #f4f4f0;
+  --color-primary: #c8ccd4;
+  --color-primary-foreground: #09090b;
+  --color-secondary: #1a1a1e;
+  --color-secondary-foreground: #f4f4f0;
+  --color-muted: #1a1a1e;
+  --color-muted-foreground: #8a8a86;
+  --color-accent: #1a1a1e;
+  --color-accent-foreground: #f4f4f0;
+  --color-destructive: #b4554a;
+  --color-destructive-foreground: #f4f4f0;
+  --color-border: rgb(244 244 240 / 0.1);
+  --color-input: rgb(244 244 240 / 0.12);
+  --color-ring: #c8ccd4;
+  --color-hold: #9aa8b8;
+
+  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Newsreader Variable", "Newsreader", ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+
+  --text-timer: clamp(3.25rem, 14vw, 5.25rem);
+  --text-timer--line-height: 1;
+  --text-timer--letter-spacing: -0.04em;
+
+  --shadow-border: 0 0 0 1px rgb(255 255 255 / 0.08);
+  --shadow-border-hover: 0 0 0 1px rgb(255 255 255 / 0.13);
+}
+
+@layer base {
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  html,
+  body,
+  #app {
+    min-height: 100dvh;
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    overscroll-behavior: none;
+    touch-action: manipulation;
+    background-image: linear-gradient(
+      180deg,
+      #0c0c10 0%,
+      var(--color-background) 42%,
+      #08080a 100%
+    );
+  }
+
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes hush-enter {
+  from {
+    opacity: 0;
+    transform: translateY(var(--motion-y-medium, 12px));
+    filter: blur(var(--motion-blur-md, 3px));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes hush-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.stagger-in > * {
+  animation: hush-enter 400ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.stagger-in > *:nth-child(1) {
+  animation-delay: 0ms;
+}
+.stagger-in > *:nth-child(2) {
+  animation-delay: 40ms;
+}
+.stagger-in > *:nth-child(3) {
+  animation-delay: 80ms;
+}
+.stagger-in > *:nth-child(4) {
+  animation-delay: 120ms;
+}
+.stagger-in > *:nth-child(5) {
+  animation-delay: 160ms;
+}
+
+.night-dim {
+  transition: opacity 500ms cubic-bezier(0.22, 1, 0.36, 1);
+}
